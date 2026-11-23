@@ -1,0 +1,29 @@
+# ============================================================================
+# 集中化 VPC 终端节点访问（Hub & Spoke）— Terraform 变量示例
+#
+# 凭据（A K / S K）一律通过环境变量注入，禁止写入本文件或任何 .tfvars：
+#   export HW_ACCESS_KEY="<HW_ACCESS_KEY>"
+#   export HW_SECRET_KEY="<HW_SECRET_KEY>"
+#
+# 使用方式：
+#   cp terraform.tfvars.example terraform.tfvars
+#   vim terraform.tfvars    # 按需修改非凭据字段
+#   terraform apply
+# ============================================================================
+
+region = "cn-north-4"
+
+# 资源命名前缀：用于统一标识本套集中化终端节点实践
+project_name = "centralized-endpoints"
+
+# 集中化的「接口型」终端节点服务列表（每个服务三要素）
+#   - short_name         ：资源命名简称（如 dns）
+#   - public_service_name：VPCEP 控制台「公共终端节点服务」中查到的服务名（按 region 核实）
+#   - zone_name          ：要覆盖解析的私有 DNS 区域/记录名
+endpoint_services = [
+  {
+    short_name          = "dns"
+    public_service_name = "dns"
+    zone_name           = "dns.cn-north-4.myhuaweicloud.com"
+  },
+]
