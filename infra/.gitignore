@@ -1,0 +1,7 @@
+# Terraform 本地产物（执行 init/plan/apply 时自动生成，不入库）
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.*
+*.tfplan
+crash.log
